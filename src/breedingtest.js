@@ -1,6 +1,7 @@
 import sampleMonster from './data/sampleMonster';
 import elementChart from './data/elementChart';
 
+// TODO: Generate 3 potential offsprings
 const breedTest = (mon1, mon2) => {
     let newMonster = JSON.parse(JSON.stringify(sampleMonster));
 
