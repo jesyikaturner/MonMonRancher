@@ -1,0 +1,43 @@
+[
+    { "element1": "fire", "element2": "fire", "item": "", "result": "fire" },
+    { "element1": "fire", "element2": "water", "item": "", "result": "" },
+    { "element1": "fire", "element2": "wind", "item": "", "result": "storm" },
+    { "element1": "fire", "element2": "earth", "item": "", "result": "metal" },
+    { "element1": "fire", "element2": "light", "item": "", "result": "energy" },
+    { "element1": "fire", "element2": "shadow", "item": "", "result": "twilight" },
+
+    { "element1": "water", "element2": "fire", "item": "", "result": "" },
+    { "element1": "water", "element2": "water", "item": "","result": "water" },
+    { "element1": "water", "element2": "wind", "item": "", "result": "storm" },
+    { "element1": "water", "element2": "earth", "item": "", "result": "plant" },
+    { "element1": "water", "element2": "light", "item": "", "result": "life" },
+    { "element1": "water", "element2": "shadow", "item": "", "result": "abyssal" },
+
+    { "element1": "wind", "element2": "fire", "item": "", "result": "storm" },
+    { "element1": "wind", "element2": "water", "item": "","result": "storm" },
+    { "element1": "wind", "element2": "wind", "item": "", "result": "wind" },
+    { "element1": "wind", "element2": "earth", "item": "", "result": "sand" },
+    { "element1": "wind", "element2": "light", "item": "", "result": "energy" },
+    { "element1": "wind", "element2": "shadow", "item": "", "result": "death" },
+
+    { "element1": "earth", "element2": "fire", "item": "", "result": "metal" },
+    { "element1": "earth", "element2": "water", "item": "","result": "plant" },
+    { "element1": "earth", "element2": "wind", "item": "", "result": "sand" },
+    { "element1": "earth", "element2": "earth", "item": "", "result": "earth" },
+    { "element1": "earth", "element2": "light", "item": "", "result": "life" },
+    { "element1": "earth", "element2": "shadow", "item": "", "result": "death" },
+
+    { "element1": "light", "element2": "fire", "item": "", "result": "energy" },
+    { "element1": "light", "element2": "water", "item": "","result": "life" },
+    { "element1": "light", "element2": "wind", "item": "", "result": "energy" },
+    { "element1": "light", "element2": "earth", "item": "", "result": "life" },
+    { "element1": "light", "element2": "light", "item": "", "result": "light" },
+    { "element1": "light", "element2": "shadow", "item": "", "result": "twilight" },
+
+    { "element1": "shadow", "element2": "fire", "item": "", "result": "twlight" },
+    { "element1": "shadow", "element2": "water", "item": "","result": "abyssal" },
+    { "element1": "shadow", "element2": "wind", "item": "", "result": "death" },
+    { "element1": "shadow", "element2": "earth", "item": "", "result": "death" },
+    { "element1": "shadow", "element2": "light", "item": "", "result": "twilight" },
+    { "element1": "shadow", "element2": "shadow", "item": "", "result": "shadow" }
+]
