@@ -29,17 +29,17 @@ const breedTest = (mon1, mon2) => {
     // TODO: if incompatible then return null
 
     // determine attributes from parents
-    let childGenetics = Object.values(newMonster.geneticAtrributes);
-    let mon1Genetics = Object.values(mon1.geneticAtrributes);
-    let mon2Genetics = Object.values(mon2.geneticAtrributes);
-    for(var i = 0; i < Object.keys(sampleMonster.geneticAtrributes).length; i++){
+    let childGenetics = Object.values(newMonster.attributeGenetics);
+    let mon1Genetics = Object.values(mon1.attributeGenetics);
+    let mon2Genetics = Object.values(mon2.attributeGenetics);
+    for(var i = 0; i < Object.keys(sampleMonster.attributeGenetics).length; i++){
         if(mon1Genetics[i]+1 > mon2Genetics[i]){
             childGenetics[i] = getRandomInt(mon2Genetics[i], mon1Genetics[i]+1);
         }else if (mon2Genetics[i]+1 > mon1Genetics[i]){
             childGenetics[i] = getRandomInt(mon1Genetics[i], mon2Genetics[i]+1);
         }
     }
-    newMonster.geneticAtrributes = childGenetics;
+    newMonster.attributeGenetics = childGenetics;
 
     // calculate stats
     calculateAttributes(newMonster);

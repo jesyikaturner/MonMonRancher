@@ -32,11 +32,11 @@ export const calculateAttributes = (monster) => {
         return null;
     }
 
-    monster.attributes.strength = calculateStat(speciesAtrributes[2],monster.geneticAtrributes[2], monster.attributes.level,5);
-    monster.attributes.agility = calculateStat(speciesAtrributes[3],monster.geneticAtrributes[3], monster.attributes.level,5);
-    monster.attributes.intellect = calculateStat(speciesAtrributes[4],monster.geneticAtrributes[4], monster.attributes.level,5);
-    monster.attributes.health = calculateStat(speciesAtrributes[0],monster.geneticAtrributes[0], monster.attributes.level,monster.attributes.strength*2);
-    monster.attributes.mana = calculateStat(speciesAtrributes[1],monster.geneticAtrributes[1], monster.attributes.level,monster.attributes.intellect*2);
+    monster.attributes.strength = calculateStat(speciesAtrributes[2],monster.attributeGenetics[2], monster.attributes.level,5);
+    monster.attributes.agility = calculateStat(speciesAtrributes[3],monster.attributeGenetics[3], monster.attributes.level,5);
+    monster.attributes.intellect = calculateStat(speciesAtrributes[4],monster.attributeGenetics[4], monster.attributes.level,5);
+    monster.attributes.health = calculateStat(speciesAtrributes[0],monster.attributeGenetics[0], monster.attributes.level,monster.attributes.strength*2);
+    monster.attributes.mana = calculateStat(speciesAtrributes[1],monster.attributeGenetics[1], monster.attributes.level,monster.attributes.intellect*2);
 }
 
 const calculateStat = (speciesBaseAttribute, geneticAttribute, level, bonus) => {
