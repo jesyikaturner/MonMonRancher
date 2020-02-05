@@ -35,12 +35,19 @@ app.use(express.static('client'));
 import sampleMonster from './src/data/sampleMonster';
 let monster1 = JSON.parse(JSON.stringify(sampleMonster));
 monster1.elementGenetics = {
-    "fire": 100.0,
-    "water": 0.0,
-    "wind": 0.0,
-    "earth": 0.0,
-    "light": 0.0,
-    "shadow":0.0
+  "fire": 100.0,
+  "water": 0.0,
+  "wind": 0.0,
+  "earth": 0.0,
+  "light": 0.0,
+  "shadow":0.0
+};
+monster1.geneticAtrributes = {
+  "health": 2,
+  "mana": 1,
+  "strength": 3,
+  "agility": 2,
+  "intellect": 1
 };
 
 let monster2 = JSON.parse(JSON.stringify(sampleMonster));
@@ -52,10 +59,19 @@ monster2.elementGenetics = {
     "light": 0.0,
     "shadow":0.0
 };
+monster2.geneticAtrributes = {
+  "health": 4,
+  "mana": 3,
+  "strength": 3,
+  "agility": 2,
+  "intellect": 5
+};
+
 //let test = breedTest(monster1, monster2);
 let monster3 = breedTest(monster1, monster2);
+console.log(monster3);
 let monster4 = breedTest(monster3, monster1);
-console.log(breedTest(monster3, monster4));
+//console.log(breedTest(monster3, monster4));
 
 
 

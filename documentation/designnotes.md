@@ -55,3 +55,9 @@ Tournament --> Choose Type of Combat --> Choose Monsters (If needed) --> Confirm
 ## Dungeon
 Choose Dungeon --> Confirmation --> Battle through monsters --> complete dungeon.
 
+## Misc
+Formulas to determine stats
+str, int, agi = Math.ceil(((((species attribute + genetic attribute)*4) * level) / 100) + level + 5)
+health = Math.ceil(((((species attribute + genetic attribute)*4) * level) / 100) + level + str)
+mana = Math.ceil(((((species attribute + genetic attribute)*4) * level) / 100) + level + int)
+

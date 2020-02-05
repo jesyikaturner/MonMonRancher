@@ -1,5 +1,6 @@
 import sampleMonster from './data/sampleMonster';
-import elementChart from './data/elementChart';
+import { getRandomInt, getHighestValueIndexes, 
+    calculateAttributes, determineElement } from './shared';
 
 // TODO: Generate 3 potential offsprings
 const breedTest = (mon1, mon2) => {
@@ -21,12 +22,29 @@ const breedTest = (mon1, mon2) => {
     newMonster.elementGenetics = childElements;
 
     // determine element from genetics
-    let indexes = getHighestValues(childElements);
-    newMonster.element = determineElement(indexes);
+    let indexes = getHighestValueIndexes(childElements);
+    newMonster.element = determineElement(indexes, "");
 
     // TODO: determine species
     // TODO: if incompatible then return null
-    // TODO: determine attributes from parents
+
+    // determine attributes from parents
+    let childGenetics = Object.values(newMonster.geneticAtrributes);
+    let mon1Genetics = Object.values(mon1.geneticAtrributes);
+    let mon2Genetics = Object.values(mon2.geneticAtrributes);
+    for(var i = 0; i < Object.keys(sampleMonster.geneticAtrributes).length; i++){
+        if(mon1Genetics[i]+1 > mon2Genetics[i]){
+            childGenetics[i] = getRandomInt(mon2Genetics[i], mon1Genetics[i]+1);
+        }else if (mon2Genetics[i]+1 > mon1Genetics[i]){
+            childGenetics[i] = getRandomInt(mon1Genetics[i], mon2Genetics[i]+1);
+        }
+    }
+    newMonster.geneticAtrributes = childGenetics;
+
+    // calculate stats
+    calculateAttributes(newMonster);
+
+
     // TODO: set image src to an egg picture
 
     newMonster.name = newMonster.element+" Egg";
@@ -34,38 +52,6 @@ const breedTest = (mon1, mon2) => {
     return newMonster;
 }
 
-const determineElement = (elements) => {
-    let elementNames = Object.keys(sampleMonster.elementGenetics); 
-    let element1 = "", element2 = "";
 
-    if(elements.length < 2){
-        element1 = element2 = elementNames[elements[0]];
-    } else if(elements.length == 2){
-        element1 = elementNames[elements[0]];
-        element2 = elementNames[elements[1]];
-    } else if(elements.length > 2){
-        console.log("Monster has more than 2 types");
-        // TODO: randomly choose 2, to choose element
-    }
-
-    for(var i = 0; i < elementChart.length; i++){
-        if(element1 == elementChart[i].element1 && element2 == elementChart[i].element2){
-            let r = elementChart[i].result;
-            return r.charAt(0).toUpperCase()+r.substring(1);
-        }
-    }
-}
-
-const switchImage = (monster) => {
-
-}
-
-//https://stackoverflow.com/questions/55284833/javascript-return-all-indexes-of-highest-values-in-an-array
-const getHighestValues = (array) => {
-    let max = Math.max(...array);
-    let indexes = [];
-    array.forEach((item, index) => item === max ? indexes.push(index) : null);
-    return indexes;
-}
 
 export default breedTest;
