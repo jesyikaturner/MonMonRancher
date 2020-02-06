@@ -16,10 +16,17 @@ CREATE TABLE IF NOT EXISTS Monsters(
     speciesType VARCHAR(100) NOT NULL,  -- Foreign Key
     monsterEggId INTEGER UNSIGNED NOT NULL, --Foreign Key
 
+    -- TODO: element
+    -- TODO: Age
+    -- TODO: User -- Foreign Key
+    -- TODO: Equipment -- Foreign Key
+    -- TODO: plan out customization like changing its colour with a potion (see neopets paintbrushes)
+
+
     elementGenetics INTEGER UNSIGNED NOT NULL UNIQUE, --Foreign Key. Adds up to 100.
     elementResistance INTEGER UNSIGNED NOT NULL UNIQUE, --Foreign Key
-    attributeGenetics INTEGER UNSIGNED NOT NULL UNIQUE, --Foreign Key
-    trainingValues INTEGER UNSIGNED NOT NULL UNIQUE, --Foreign Key
+    attributeGenetics INTEGER UNSIGNED NOT NULL UNIQUE, --TODO: Foreign Key
+    trainingValues INTEGER UNSIGNED NOT NULL UNIQUE, --TODO: Foreign Key
 
     
     PRIMARY KEY (monsterName),
@@ -35,6 +42,10 @@ CREATE TABLE IF NOT EXISTS Monsters(
     CONSTRAINT fk_MonsterElementResistance FOREIGN KEY (elementResistance)
         REFERENCES ElementResistances(elementAttributeId)
         ON UPDATE CASCADE ON DELETE CASCADE,
+);
+
+CREATE TABLE IF NOT EXISTS MonsterProfile(
+    --TODO: this
 );
 
 CREATE TABLE IF NOT EXISTS MonsterEggs(
