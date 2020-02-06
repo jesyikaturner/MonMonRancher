@@ -1,4 +1,6 @@
 import sampleMonster from './data/sampleMonster';
+import species from './data/species';
+
 import { getRandomInt, getHighestValueIndexes, 
     calculateAttributes, determineElement } from './shared';
 
@@ -26,6 +28,23 @@ const breedTest = (mon1, mon2) => {
     newMonster.element = determineElement(indexes, "");
 
     // TODO: determine species
+    let parentSpecies = [];
+    for(var i = 0; i < species.length; i++){
+        if(mon1.species.localeCompare(species[i].species)){
+            parentSpecies.push(mon1.species);
+        }
+        if(mon2.species.localeCompare(species[i].species)){
+            parentSpecies.push(mon2.species);
+        }
+    }
+    console.log(parentSpecies);
+    if(parentSpecies.length < 1){
+        // TODO: Log error
+        return null;
+    }
+
+    newMonster.species = parentSpecies[getRandomInt(0,parentSpecies.length)];
+
     // TODO: if incompatible then return null
 
     // determine attributes from parents

@@ -12,17 +12,21 @@ const PORT = process.env.PORT || 8080;
 require('dotenv').config();
 // example: let uriString = process.env.MONGOLAB_BLACK_URI || process.env.MONGO;
 import mysql from 'mysql';
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
+    connectionLimit: 10,
+    queueLimit: 0,
+    enableKeepAlive: true
 });
 
-//connection.connect((err) => {
-//    if(err) throw err;
-//    console.log("Connected!");
-//})
+pool.on("connection", (connection) => {
+  connection.on("err", (err) => {
+    console.log("ERROR!");
+  });
+});
 
 // bodyparser setup
 app.use(bodyParser.urlencoded({extended: true}));
@@ -34,6 +38,7 @@ app.use(express.static('client'));
 
 import sampleMonster from './src/data/sampleMonster';
 let monster1 = JSON.parse(JSON.stringify(sampleMonster));
+monster1.species = "cat";
 monster1.elementGenetics = {
   "fire": 100.0,
   "water": 0.0,
@@ -42,7 +47,7 @@ monster1.elementGenetics = {
   "light": 0.0,
   "shadow":0.0
 };
-monster1.geneticAtrributes = {
+monster1.attributeGenetics = {
   "health": 2,
   "mana": 1,
   "strength": 3,
@@ -51,6 +56,7 @@ monster1.geneticAtrributes = {
 };
 
 let monster2 = JSON.parse(JSON.stringify(sampleMonster));
+monster2.species = "cat";
 monster2.elementGenetics = {
     "fire": 0.0,
     "water": 0.0,
@@ -59,7 +65,7 @@ monster2.elementGenetics = {
     "light": 0.0,
     "shadow":0.0
 };
-monster2.geneticAtrributes = {
+monster2.attributeGenetics = {
   "health": 4,
   "mana": 3,
   "strength": 3,
