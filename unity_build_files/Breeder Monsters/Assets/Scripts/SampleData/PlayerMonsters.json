@@ -1,0 +1,93 @@
+﻿{
+	"monsters":
+	[
+		{
+			"name": "Adam",
+			"species": "PuppyCat",
+			"element": "Abyssal",
+			"attributes": {
+				"level": 1,
+				"experience": 0,
+				"health": 10,
+				"mana": 10,
+				"strength": 10,
+				"agility": 10,
+				"intellect": 10,
+				"defense": 0,
+				"equipment": {
+					"armour": "nothing",
+					"weapon": "nothing",
+					"shield": "nothing",
+					"trinket": "nothing"
+				}
+			},
+			"moveset": ["","","","","",""]
+		},
+		{
+			"name": "Kiro",
+			"species": "LionWolf",
+			"element": "Storm",
+			"attributes": {
+				"level": 2,
+				"experience": 0,
+				"health": 10,
+				"mana": 10,
+				"strength": 10,
+				"agility": 10,
+				"intellect": 10,
+				"defense": 0,
+				"equipment": {
+					"armour": "Molten Chestplate",
+					"weapon": "nothing",
+					"shield": "nothing",
+					"trinket": "nothing"
+				}
+			},
+			"moveset": ["","","","","",""]
+		},
+		{
+			"name": "Lisa",
+			"species": "FishBird",
+			"element": "Wind",
+			"attributes": {
+				"level": 1,
+				"experience": 0,
+				"health": 10,
+				"mana": 10,
+				"strength": 10,
+				"agility": 10,
+				"intellect": 10,
+				"defense": 0,
+				"equipment": {
+					"armour": "nothing",
+					"weapon": "nothing",
+					"shield": "nothing",
+					"trinket": "nothing"
+				}
+			},
+			"moveset": ["","","","","",""]
+		},
+		{
+			"name": "Sam",
+			"species": "PuppyCat",
+			"element": "Abyssal",
+			"attributes": {
+				"level": 1,
+				"experience": 0,
+				"health": 10,
+				"mana": 10,
+				"strength": 10,
+				"agility": 10,
+				"intellect": 10,
+				"defense": 0,
+				"equipment": {
+					"armour": "nothing",
+					"weapon": "nothing",
+					"shield": "nothing",
+					"trinket": "nothing"
+				}
+			},
+			"moveset": ["","","","","",""]
+		}
+	]
+}

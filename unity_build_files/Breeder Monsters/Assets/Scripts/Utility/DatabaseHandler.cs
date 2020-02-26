@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Data;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
-using MySql.Data;
 using MySql.Data.MySqlClient;
+
+// TODO I need the javascript functions to access the unity scripts not the other way around. 
+// I need to pass in the logged in user's token
 
 // Reference 1: https://github.com/Hanslen/Unity-with-MYSQL/blob/master/Assets/Scripts/DatabaseHandler.cs
 // Reference 2: http://zetcode.com/csharp/mysql/
+// Reference 3: https://stackoverflow.com/questions/44377680/unity-webgl-and-browser-javascript-communication
 
 public class DatabaseHandler : MonoBehaviour
 {
-    public enum DATABASESTATE { DEVELOPMENT, PRODUCTION}
-    public DATABASESTATE databaseState = DATABASESTATE.DEVELOPMENT;
-
     // fill these in for production build
     public string host, database, user, password;
     public bool pooling = true;
@@ -27,30 +24,25 @@ public class DatabaseHandler : MonoBehaviour
 
     private MD5 _md5Hash;
 
-    private FileHandler fileHandler = new FileHandler();
-
     public void SetupDatabaseHandler()
     {
         DontDestroyOnLoad(gameObject);
 
-        switch (databaseState)
-        {
-            case DATABASESTATE.PRODUCTION:
-                connectionString = String.Format("Server={0}; Database={1}; User={2}; Password={3}; Pooling={4};", host, database, user, password, pooling ? "True" : "False");
-                break;
-            case DATABASESTATE.DEVELOPMENT:
-                List<string> DBData = LoadDotEnvProperties();
-                connectionString = String.Format("Server={0}; Database={1}; User={2}; Password={3}; Pooling={4};", DBData[0], DBData[1], DBData[2], DBData[3], pooling ? "True" : "False");
-                break;
-            default:
-                Logger.WriteToLog("DatabaseHandler: SetupDatabaseHandler(): ERROR: DATABASESTATE has defaulted for some reason!");
-                break;
-        }
+#if UNITY_EDITOR
+        List<string> DBData = new List<string>();
+        DBData = FileHandler.ReadTextFile(".env");
+        connectionString = String.Format("Server={0}; Database={1}; User={2}; Password={3}; Pooling={4};", DBData[0], DBData[1], DBData[2], DBData[3], pooling ? "True" : "False");
+#endif
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        connectionString = String.Format("Server={0}; Database={1}; User={2}; Password={3}; Pooling={4};", host, database, user, password, pooling ? "True" : "False");
+#endif
 
         try
         {
             con = new MySqlConnection(connectionString);
             con.Open();
+            Logger.WriteToLog("DatabaseHandler: SetupDatabaseHandler(): ERROR: keys length doesn't equal values length");
             Debug.LogFormat("Mysql state: {0}");
 
 
@@ -61,23 +53,6 @@ public class DatabaseHandler : MonoBehaviour
         }
     }
 
-    private List<string> LoadDotEnvProperties()
-    {
-        List<string> output = new List<string>();
-
-        try
-        {
-            // have to create a .env file in Assets and then fill in database values
-            output = fileHandler.ReadTextFile(".env");
-        }catch(Exception e)
-        {
-            Debug.Log(e);
-        }
-
-
-        return output;
-    }
-
     private void OnApplicationQuit()
     {
         if(con != null)
@@ -85,7 +60,7 @@ public class DatabaseHandler : MonoBehaviour
             if(con.State.ToString() != "Closed")
             {
                 con.Close();
-                Debug.Log("MySQL Connection Closed!");
+                Logger.WriteToLog("DatabaseHandler: OnApplicationQuit(): MySQL Connection Closed!");
             }
             con.Dispose();
         }

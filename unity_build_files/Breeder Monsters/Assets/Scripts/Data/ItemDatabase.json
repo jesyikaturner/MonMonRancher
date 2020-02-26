@@ -1,0 +1,42 @@
+﻿{
+    "items":
+    [
+        {
+            "name": "Small Health Potion",
+            "description": "Recover 10 Health.",
+            "buff":
+            [
+                {
+                    "value": 10,
+                    "type": "health"
+                }
+            ]
+        },
+        {
+            "name": "Small Mana Potion",
+            "description": "Recover 10 Mana.",
+            "buff":
+            [
+                {
+                    "value": 10,
+                    "type": "mana"
+                }
+            ]
+        },
+        {
+            "name": "Molten Chestplate",
+            "description": "Chestplate with moderate fire resist.",
+            "buff":
+            [
+                {
+                    "value": 25,
+                    "type": "fireResist"
+                },
+                {
+                    "value": 10,
+                    "type": "defense"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+﻿{
+    "moves":
+    [
+        {
+            "name": "Fire Ball",
+            "description": "Magic. Fire. Single Target.",
+            "physicalPower": 0,
+            "magicPower": 5,
+            "healthCost": 0,
+            "manaCost": 3,
+            "totalHits": 1,
+            "targets": "single",
+            "element": "fire"
+        },
+        {
+            "name": "Water Bullet",
+            "description": "Magic. Water. Single Target.",
+            "physicalPower": 0,
+            "magicPower": 5,
+            "healthCost": 0,
+            "manaCost": 3,
+            "totalHits": 1,
+            "targets": "single",
+            "element": "water"
+        },
+        {
+            "name": "Wind Fury",
+            "description": "Magic. Wind. Single Target.",
+            "physicalPower": 0,
+            "magicPower": 5,
+            "healthCost": 0,
+            "manaCost": 3,
+            "totalHits": 1,
+            "targets": "single",
+            "element": "wind"
+        },
+        {
+            "name": "Earth Blast",
+            "description": "Magic. Earth. Single Target.",
+            "physicalPower": 0,
+            "magicPower": 5,
+            "healthCost": 0,
+            "manaCost": 3,
+            "totalHits": 1,
+            "targets": "single",
+            "element": "earth"
+        },
+        {
+            "name": "Light Beam",
+            "description": "Magic. Light. Single Target.",
+            "physicalPower": 0,
+            "magicPower": 10,
+            "healthCost": 0,
+            "manaCost": 5,
+            "totalHits": 1,
+            "targets": "single",
+            "element": "light"
+        },
+        {
+            "name": "Shadow Bolt",
+            "description": "Magic. Shadow. Single Target.",
+            "physicalPower": 0,
+            "magicPower": 10,
+            "healthCost": 0,
+            "manaCost": 5,
+            "totalHits": 1,
+            "targets": "single",
+            "element": "shadow"
+        }
+    ]
+}

@@ -1,27 +1,6 @@
-Logger: SetUpLogger(): ERROR: System.IO.FileNotFoundException: Could not find file "C:\Users\jesyi\Desktop\Breeder Monsters\Assets\logfile"
-File name: 'C:\Users\jesyi\Desktop\Breeder Monsters\Assets\logfile'
-  at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) [0x0019e] in <599589bf4ce248909b8a14cbe4a2034e>:0 
-  at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.IO.FileOptions options, System.String msgPath, System.Boolean bFromProxy, System.Boolean useLongPath, System.Boolean checkHost) [0x00000] in <599589bf4ce248909b8a14cbe4a2034e>:0 
-  at (wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int,System.IO.FileOptions,string,bool,bool,bool)
-  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding, System.Boolean detectEncodingFromByteOrderMarks, System.Int32 bufferSize, System.Boolean checkHost) [0x00067] in <599589bf4ce248909b8a14cbe4a2034e>:0 
-  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding, System.Boolean detectEncodingFromByteOrderMarks, System.Int32 bufferSize) [0x00000] in <599589bf4ce248909b8a14cbe4a2034e>:0 
-  at System.IO.StreamReader..ctor (System.String path, System.Boolean detectEncodingFromByteOrderMarks) [0x0000d] in <599589bf4ce248909b8a14cbe4a2034e>:0 
-  at System.IO.StreamReader..ctor (System.String path) [0x00000] in <599589bf4ce248909b8a14cbe4a2034e>:0 
-  at (wrapper remoting-invoke-with-check) System.IO.StreamReader..ctor(string)
-  at FileHandler.ReadTextFile (System.String filename) [0x00007] in C:\Users\jesyi\Desktop\Breeder Monsters\Assets\Scripts\FileHandler.cs:30 
-  at Logger.SetUpLogger () [0x00002] in C:\Users\jesyi\Desktop\Breeder Monsters\Assets\Scripts\Utility\Logger.cs:17  
- Creating new logfile!
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-Player: SetupControls(): SUCCESSFUL: controls set up.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-Player: SetupControls(): SUCCESSFUL: controls set up.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-Player: SetupControls(): SUCCESSFUL: controls set up.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-Player: SetupControls(): SUCCESSFUL: controls set up.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
-Player: SetupControls(): SUCCESSFUL: controls set up.
+26/02/2020 3:44:26 PM FileHandler: ReadTextFile(): SUCCESS: file read, returning output list.
+26/02/2020 3:44:28 PM Player: SetupControls(): SUCCESSFUL: controls set up.
+27/02/2020 3:45:27 AM Player: SetupControls(): SUCCESSFUL: controls set up.
+27/02/2020 3:51:53 AM Player: SetupControls(): SUCCESSFUL: controls set up.
+27/02/2020 5:32:11 AM Player: SetupControls(): SUCCESSFUL: controls set up.
+27/02/2020 5:32:30 AM Player: SetupControls(): SUCCESSFUL: controls set up.

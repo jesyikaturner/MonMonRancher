@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ComputerPlayer : MonoBehaviour, IPlayer
 {
-    public void SetupControls(int playerID, DatabaseHandler database)
+    public void SetupControls(int playerID)
+    {
+
+    }
+
+    public void SetupMonsterParty(TextAsset monstersJSON, MoveList moves)
     {
 
     }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IPlayer
 {
-    void SetupControls(int playerID, DatabaseHandler database);
+    void SetupControls(int playerID);
+    void SetupMonsterParty(TextAsset monstersJSON, MoveList moves);
 }
