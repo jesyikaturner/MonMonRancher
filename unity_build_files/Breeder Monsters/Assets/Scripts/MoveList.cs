@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,18 +9,18 @@ public class MoveList
 
     public void SetupMoveList(TextAsset json)
     {
-        /*
-        moveList.Add("Fire Ball", new MoveDetails("Fire Ball","Magic. Fire. Single Target",0,5,0,3,1,MoveDetails.TARGETS.SINGLE,MoveDetails.ELEMENTS.FIRE));
-        moveList.Add("Water Blast", new MoveDetails("Water Blast", "Magic. Water. Single Target", 0, 5, 0, 3, 1, MoveDetails.TARGETS.SINGLE, MoveDetails.ELEMENTS.WATER));
-        moveList.Add("Wind Fury", new MoveDetails("Wind Fury", "Magic. Wind. Single Target", 0, 5, 0, 3, 1, MoveDetails.TARGETS.SINGLE, MoveDetails.ELEMENTS.WIND));
-        moveList.Add("Earth Blast", new MoveDetails("Earth Blast", "Magic. Earth. Single Target", 0, 5, 0, 3, 1, MoveDetails.TARGETS.SINGLE, MoveDetails.ELEMENTS.EARTH));
-        moveList.Add("Light Beam", new MoveDetails("Light Beam", "Magic. Light. Single Target", 0, 10, 0, 5, 1, MoveDetails.TARGETS.SINGLE, MoveDetails.ELEMENTS.LIGHT));
-        moveList.Add("Shadow Bolt", new MoveDetails("Shadow Bolt", "Magic. Shadow. Single Target", 0, 10, 0, 5, 1, MoveDetails.TARGETS.SINGLE, MoveDetails.ELEMENTS.SHADOW));
-        */
+        moveList = new Dictionary<string, MoveDetails>();
+
+        // creating an object array from the json
         Moves movesObject = JsonUtility.FromJson<Moves>(json.text);
+
+        // converting the objects into MoveDetails for a more complex object
         foreach(Move move in movesObject.moves)
         {
-            Debug.Log(move.name);
+            moveList.Add(move.name, new MoveDetails(move.name,move.description,move.physicalPower,move.magicPower,move.healthCost,move.manaCost,move.totalHits));
+            moveList[move.name].SetTarget(move.targets);
+            moveList[move.name].SetElement(move.element);
+            Logger.WriteToLog("MoveList: SetupMoveList(): SUCCESS: Created new move: " + moveList[move.name].MoveDetailsString());
         }
     }
 
@@ -29,45 +30,93 @@ public class MoveList
         return moveList[name];
     }
 
-    // TODO Rewrite to account for reading from json
     public class MoveDetails
     {
-        public enum TARGETS { SINGLE, MULTIPLE, ALL };
-        public enum ELEMENTS { FIRE, WATER, WIND, EARTH, LIGHT, SHADOW };
-        public string name;
-        public string description;
-        public int power;
-        public int magicPower;
-        public int healthCost;
-        public int manaCost;
-        public int totalHits;
-        public TARGETS target;
-        public ELEMENTS element;
+        public enum TARGET { SINGLE, MULTIPLE, ALL, NOTHING };
+        public enum ELEMENT { FIRE, WATER, WIND, EARTH, LIGHT, SHADOW };
 
-        public MoveDetails(string name, string description, int power, int magicPower, int healthCost, int manaCost, int totalHits, TARGETS target, ELEMENTS element)
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public int PhysicalPower { get; private set; }
+        public int MagicPower { get; private set; }
+        public int HealthCost { get; private set; }
+        public int ManaCost { get; private set; }
+        public int TotalHits { get; private set; }
+
+        public TARGET Target { get; private set; }
+        public ELEMENT Element { get; private set; }
+
+
+        public MoveDetails(string name, string description, int power, int magicPower, int healthCost, int manaCost, int totalHits)
         {
-            this.name = name;
-            this.description = description;
-            this.power = power;
-            this.magicPower = magicPower;
-            this.healthCost = healthCost;
-            this.manaCost = manaCost;
-            this.totalHits = totalHits;
-            this.target = target;
-            this.element = element;
+            Name = name;
+            Description = description;
+            PhysicalPower = power;
+            MagicPower = magicPower;
+            HealthCost = healthCost;
+            ManaCost = manaCost;
+            TotalHits = totalHits;
+        }
 
-            string moveDetailsString = string.Format("Name: {0}, Description: {1}, Power: {2}, Magic Power: {3}, Health Cost: {4}, Total Hits: {5}, Targets: {6}, Element: {7}", 
-                name, description, power, magicPower, healthCost, manaCost, totalHits, target, element);
-            Logger.WriteToLog("MoveList: MoveDetails: MoveDetails(): SUCCESS: Created new move: "+ moveDetailsString);
+        public void SetTarget(string targets)
+        {
+            switch (targets)
+            {
+                case "single":
+                    Target = TARGET.SINGLE;
+                    break;
+                case "mutiple":
+                    Target = TARGET.MULTIPLE;
+                    break;
+                case "all":
+                    Target = TARGET.ALL;
+                    break;
+                default:
+                    Target = TARGET.NOTHING;
+                    Logger.WriteToLog("MoveList: MoveDetails: SetTarget(): ERROR: target defaulted!");
+                    break;
+            }
+        }
+
+        public void SetElement(string element)
+        {
+            Dictionary<string, ELEMENT> elementDictionary = new Dictionary<string, ELEMENT>()
+            {
+                ["fire"] = ELEMENT.FIRE, 
+                ["water"] = ELEMENT.WATER,
+                ["wind"] = ELEMENT.WATER,
+                ["earth"] = ELEMENT.WATER,
+                ["light"] = ELEMENT.WATER,
+                ["shadow"] = ELEMENT.WATER
+            };
+
+            try
+            {
+                Element = elementDictionary[element];
+            }catch(Exception e)
+            {
+                Logger.WriteToLog("MoveList: MoveDetails: SetElement(): ERROR: Invalid element: "+e);
+            }
+        }
+
+
+        public string MoveDetailsString()
+        {
+            return string.Format("Name: {0}, Description: {1}, Power: {2}, Magic Power: {3}, Health Cost: {4}, Mana Cost: {5} Total Hits: {6}, Targets: {7}, Element: {8}", 
+                Name, Description, PhysicalPower, MagicPower, HealthCost, ManaCost, TotalHits, Target, Element);
         }
     }
 
-    public class Moves
+    // JSON
+#pragma warning disable 0649
+    [System.Serializable]
+    private class Moves
     {
         public Move[] moves;
     }
 
-    public class Move
+    [System.Serializable]
+    private class Move
     {
         public string name;
         public string description;

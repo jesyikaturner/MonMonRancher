@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Monster
 {
     public Dictionary<string, MonsterDetails> monsterList;
@@ -10,7 +9,7 @@ public class Monster
     public Monster(TextAsset json, MoveList moves)
     {
 #if UNITY_EDITOR
-        MonstersRoot monstersObject = JsonUtility.FromJson<MonstersRoot>(json.text);
+        MonsterRoots monstersObject = JsonUtility.FromJson<MonsterRoots>(json.text);
 #endif
 
         foreach(MonsterRoot monster in monstersObject.monsters)
@@ -20,7 +19,6 @@ public class Monster
         }
     }
 
-    [System.Serializable]
     public class MonsterDetails
     {
         private string name;
@@ -34,16 +32,22 @@ public class Monster
         {
 
         }
+
+        public void SetMoveList(string[] names)
+        {
+
+        }
     }
 
+#pragma warning disable 0649
     [System.Serializable]
-    public class MonstersRoot
+    private class MonsterRoots
     {
         public MonsterRoot[] monsters;
     }
 
     [System.Serializable]
-    public class MonsterRoot
+    private class MonsterRoot
     {
         public string name;
         public string species;
@@ -53,7 +57,7 @@ public class Monster
     }
 
     [System.Serializable]
-    public class MonsterAttributes
+    private class MonsterAttributes
     {
         public int level;
         public int experience;
@@ -67,7 +71,7 @@ public class Monster
     }
 
     [System.Serializable]
-    public class MonsterEquipment
+    private class MonsterEquipment
     {
         public string armour;
         public string weapon;

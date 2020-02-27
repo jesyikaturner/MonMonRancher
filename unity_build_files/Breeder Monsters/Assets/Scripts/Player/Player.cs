@@ -7,6 +7,8 @@ public class Player : MonoBehaviour, IPlayer
     private int playerID;
 
     private Dictionary<int, Monster.MonsterDetails> monsterParty;
+    // TODO Inventory
+    // TODO Player Clothes - jsonobject parsed into a clothing object?
 
     public void SetupControls(int playerID)
     {
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour, IPlayer
 
     public void SetupMonsterParty(TextAsset monstersJSON, MoveList moves)
     {
+        monsterParty = new Dictionary<int, Monster.MonsterDetails>();
         Monster monster = new Monster(monstersJSON, moves);
 
         //string response = database.GetFromDatabase("");
