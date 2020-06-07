@@ -15,7 +15,3 @@ const stockShop = () => {
 const buyMonster = (user) => {
 
 }
-
-const sellMonster = (user, monster) => {
-
-}

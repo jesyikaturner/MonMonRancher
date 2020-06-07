@@ -56,21 +56,6 @@ CREATE TABLE IF NOT EXISTS MonsterEggs(
     PRIMARY KEY (eggId)
 );
 
-CREATE TABLE IF NOT EXISTS FamilyRelations(
-    relationshipId INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-    monsterName_1 VARCHAR(100) NOT NULL, -- 1 is the [relationship] of 2
-    monsterName_2 VARCHAR(100) NOT NULL,
-    relationshipType ENUM('parent','child','sibling') DEFAULT 'parent',
-
-    PRIMARY KEY (relationshipId);
-    CONSTRAINT fk_MonsterRelation FOREIGN KEY (monsterName_1)
-        REFERENCES Monsters()
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_MonsterRelation FOREIGN KEY (monsterName_2)
-        REFERENCES Monsters()
-        ON UPDATE CASCADE ON DELETE CASCADE,
-);
-
 CREATE TABLE IF NOT EXISTS ElementGenetics(
     elementAttributeId INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     fire FLOAT(5,2) DEFAULT 0.00,

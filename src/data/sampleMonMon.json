@@ -1,0 +1,55 @@
+{
+    "name": "",
+    "age": 0,
+    "stage": "egg",
+    "species": "",
+    "rarity": "common",
+    "happiness": 55,
+    "statusEffect":"none",
+    "element":"",
+    "individualAttributes": {
+        "level": 1,
+        "experience": 0,
+        "health": 1,
+        "mana": 1,
+        "strength": 1,
+        "agility": 1,
+        "intellect": 1,
+        "resistances": {
+            "fire": 0,
+            "water": 0,
+            "wind": 0,
+            "earth": 0,
+            "light": 0,
+            "shadow":0
+        }
+    },
+    "geneticAttributes": {
+        "health": 1,
+        "mana": 1,
+        "strength": 1,
+        "agility": 1,
+        "intellect": 1
+    },
+    "geneticElements": {
+        "fire": 0.0,
+        "water": 0.0,
+        "wind": 0.0,
+        "earth": 0.0,
+        "light": 0.0,
+        "shadow":0.0
+    },
+    "trainingValues": {
+        "health": 0,
+        "mana": 0,
+        "strength": 0,
+        "agility": 0,
+        "intellect": 0
+    },
+    "equipment":{
+        "armor": "none",
+        "mainhand": "none",
+        "offhand": "none",
+        "trinket": "none"
+    }
+}

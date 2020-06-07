@@ -1,16 +1,80 @@
 import sampleMonster from './data/sampleMonster';
 import species from './data/species';
 
+import sampleMonMon from './data/sampleMonMon';
+
 import { getRandomInt, getHighestValueIndexes, 
-    calculateAttributes, determineElement } from './shared';
+    calculateAttributes, determineElement, randomGenetics } from './shared';
+
+import logger from './logging';
+
+const breedPrototypeMonster = (mother, father) => {
+    logger("breedPrototypeMonster", "Creating an empty child by cloning the sample.");
+    let newMon = JSON.parse(JSON.stringify(sampleMonMon));
+
+    logger("breedPrototypeMonster", "Getting the geneticElements.");
+    let childGeneticElements = Object.values(newMon.geneticElements);
+    let motherGeneticElements = Object.values(mother.geneticElements);
+    let fatherGeneticElements = Object.values(father.geneticElements);
+
+    logger("breedPrototypeMonster", "Giving child 50% from each parent.");
+    for(var i=0; i < Object.keys(newMon.geneticElements).length; i++)
+    {
+        childGeneticElements[i] = (motherGeneticElements[i] * 0.5) + (fatherGeneticElements[i] * 0.5)
+    }
+    newMon.geneticElements = childGeneticElements;
+
+    logger("breedPrototypeMonster", "Determining element from genetics.");
+    let indexes = getHighestValueIndexes(childElements);
+    newMon.element = determineElement(indexes, "");
+    logger("breedPrototypeMonster", `Child MonMon's element is ${newMon.element}.`);
+
+    logger("breedPrototypeMonster", "Checking both parent's species are valid species!");
+    let parentSpecies = [];
+    for(var i = 0; i < species.length; i++)
+    {
+        if(mother.species.localeCompare(species[i].species))
+        {
+            parentSpecies.push(mother.species);
+        }
+        if(father.species.localeCompare(species[i].species))
+        {
+            parentSpecies.push(father.species);
+        }
+    }
+    if(parentSpecies.length < 1){
+        logger("breedPrototypeMonster", "ERROR! Only one valid parent species in array!");
+        return null;
+    }
+    logger("breedPrototypeMonster", `PASSED! ${parentSpecies}`);
+
+    newMon.species = parentSpecies[getRandomInt(0,parentSpecies.length)];
+    logger("breedPrototypeMonster", `Child MonMon's species is ${newMon.species}.`);
+
+    logger("breedPrototypeMonster","Checking Child MonMon's species is compatiable with element.");
+    for(var i = 0; i < species.length; i++)
+    {
+        for(var x = 0; x < species[i].elements.length; x++)
+        {
+            if(newMonster.element.localeCompare(species[i].elements[x]))
+            {
+                logger("breedPrototypeMonster","PASSED! Child's species is compatiable with element!");
+            }else
+            {
+                logger("breedPrototypeMonster","Error! Child's species is incompatiable with element!");
+                return null;
+            }
+        }
+    }
+
+
+
+
+}
 
 // TODO: Generate 3 potential offsprings
 const breedTest = (mon1, mon2) => {
     let newMonster = JSON.parse(JSON.stringify(sampleMonster));
-
-    // TODO: check parent's parents to make sure they aren't directly related
-
-    // TODO: set parents, set siblings
 
     // determine elemental genetics
     let childElements = Object.values(newMonster.elementGenetics);
@@ -45,7 +109,6 @@ const breedTest = (mon1, mon2) => {
 
     newMonster.species = parentSpecies[getRandomInt(0,parentSpecies.length)];
 
-    // TODO: if incompatible then return null
 
     // determine attributes from parents
     let childGenetics = Object.values(newMonster.attributeGenetics);
@@ -59,6 +122,7 @@ const breedTest = (mon1, mon2) => {
         }
     }
     newMonster.attributeGenetics = childGenetics;
+    newMonster.attributes.level = 100;
 
     // calculate stats
     calculateAttributes(newMonster);
@@ -66,7 +130,7 @@ const breedTest = (mon1, mon2) => {
 
     // TODO: set image src to an egg picture
 
-    newMonster.name = newMonster.element+" Egg";
+    newMonster.name = `${newMonster.element} Egg`;
 
     return newMonster;
 }

@@ -2,14 +2,14 @@
     {
         "species": "cat",
         "description": "",
-        "elements": [],
+        "elements": ["fire", "water", "earth", "wind", "light", "shadow"],
         "rarity": "common",
         "speciesAtrributes": {
-            "health": 15,
-            "mana": 10,
-            "strength": 8,
-            "agility": 12,
-            "intellect": 10
+            "health": 255,
+            "mana": 5,
+            "strength": 60,
+            "agility": 50,
+            "intellect": 70
         },
         "childImgSrc": [{}],
         "adultImgSrc": [{}]
@@ -20,11 +20,11 @@
         "elements": [],
         "rarity": "common",
         "speciesAtrributes": {
-            "health": 10,
-            "mana": 10,
-            "strength": 10,
-            "agility": 10,
-            "intellect": 10
+            "health": 255,
+            "mana": 5,
+            "strength": 255,
+            "agility": 50,
+            "intellect": 70
         },
         "childImgSrc": [{}],
         "adultImgSrc": [{}]

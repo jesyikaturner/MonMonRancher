@@ -1,6 +1,7 @@
 import sampleMonster from './data/sampleMonster';
 import elementChart from './data/elementChart';
 import species from './data/species';
+import logger from './logging';
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 // This example returns a random integer between the specified values. 
@@ -16,7 +17,9 @@ export const getRandomInt = (min, max) => {
 export const getHighestValueIndexes = (array) => {
     let max = Math.max(...array);
     let indexes = [];
+    let string = "";
     array.forEach((item, index) => item === max ? indexes.push(index) : null);
+    logger("getHighestValueIndexes", "Highest element value indexes found.");
     return indexes;
 }
 
@@ -35,12 +38,27 @@ export const calculateAttributes = (monster) => {
     monster.attributes.strength = calculateStat(speciesAtrributes[2],monster.attributeGenetics[2], monster.attributes.level,5);
     monster.attributes.agility = calculateStat(speciesAtrributes[3],monster.attributeGenetics[3], monster.attributes.level,5);
     monster.attributes.intellect = calculateStat(speciesAtrributes[4],monster.attributeGenetics[4], monster.attributes.level,5);
-    monster.attributes.health = calculateStat(speciesAtrributes[0],monster.attributeGenetics[0], monster.attributes.level,monster.attributes.strength*2);
-    monster.attributes.mana = calculateStat(speciesAtrributes[1],monster.attributeGenetics[1], monster.attributes.level,monster.attributes.intellect*2);
+    monster.attributes.health = calculateStat(speciesAtrributes[0],monster.attributeGenetics[0], monster.attributes.level,monster.attributes.strength/2);
+    monster.attributes.mana = calculateStat(speciesAtrributes[1],monster.attributeGenetics[1], monster.attributes.level,monster.attributes.intellect/2);
 }
 
 const calculateStat = (speciesBaseAttribute, geneticAttribute, level, bonus) => {
-    return Math.ceil(((((speciesBaseAttribute + geneticAttribute)* 4 ) * level) / 100) + level + bonus);
+    return Math.ceil(2*(speciesBaseAttribute + geneticAttribute) * level / 100 + bonus);
+}
+
+export const randomGenetics = () => {
+    let fire, water, wind, earth, light, shadow = 0;
+    while((fire+water+wind+earth+light+shadow) != 100)
+    {
+        fire = getRandomInt(0,100);
+        water = getRandomInt(0,100);
+        wind = getRandomInt(0,100);
+        earth = getRandomInt(0,100);
+        light = getRandomInt(0,100);
+        shadow = getRandomInt(0,100);
+    }
+    let array = [fire, water, wind, earth, light, shadow];
+    return array;
 }
 
 export const determineElement = (elementIndexes, item) => {
