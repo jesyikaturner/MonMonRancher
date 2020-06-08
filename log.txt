@@ -1,0 +1,2 @@
+[Jun 8, 2020, 4:15 PM] getHighestValueIndexes: Highest element value indexes found.
+[Jun 8, 2020, 4:15 PM] getHighestValueIndexes: Highest element value indexes found.
