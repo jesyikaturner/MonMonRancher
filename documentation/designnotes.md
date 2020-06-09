@@ -1,4 +1,4 @@
-# Breeder Monsters
+# MonMon Rancher
 All of this is subject to change. Originally planned to be a Unity game, decided to change it to web-based for ease of multiplayer functionality.
 
 Inspirations: Neopets, Monster Rancer Advanced, Pokemon, DragonFable, HorseReality, and FlightRising.
