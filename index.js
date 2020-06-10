@@ -2,32 +2,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-
 import breedTest from './src/breedingtest';
-
 import routes from './src/routes/routes';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-require('dotenv').config();
-// example: let uriString = process.env.MONGOLAB_BLACK_URI || process.env.MONGO;
-import mysql from 'mysql';
-const pool = mysql.createPool({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
-    connectionLimit: 10,
-    queueLimit: 0,
-    enableKeepAlive: true
-});
+import db from './src/database';
 
-pool.on("connection", (connection) => {
-  connection.on("err", (err) => {
-    console.log("ERROR!");
-  });
-});
+db.authenticate()
+.then(() => console.log('Database connected'))
+.catch((err) => console.log(err));
 
 // bodyparser setup
 app.use(bodyParser.urlencoded({extended: true}));
