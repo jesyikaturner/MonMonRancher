@@ -1,10 +1,11 @@
 'use strict';
-
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 
 import breedTest from './src/breedingtest';
+
+import routes from './src/routes/routes';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -79,7 +80,7 @@ console.log(monster3);
 let monster4 = breedTest(monster3, monster1);
 //console.log(breedTest(monster3, monster4));
 
-
+routes(app);
 
 
 app.get('/', (req, res) => {
